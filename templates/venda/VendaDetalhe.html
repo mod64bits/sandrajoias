@@ -1,0 +1,98 @@
+{% extends 'core/starter.html' %}
+
+{% block css %}
+{% endblock css %}
+
+{% block title %}
+    Detalhe {{ object.descricao_venda }}
+{% endblock title %}
+
+{% block pageName  %}
+    Detalhe: {{ object.descricao_venda }}
+{% endblock pageName %}
+
+{% block content %}
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-text-width"></i>
+                                {{ object.comprador.nome }}
+                            </h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <dl class="row">
+                                <dt class="col-sm-4">Descrição:</dt>
+                                <dd class="col-sm-8">{{ object.descricao_venda }}</dd>
+                                <dt class="col-sm-4">Data da Compra:</dt>
+                                <dd class="col-sm-8">{{ object.data_compra }}</dd>
+                                <dt class="col-sm-4">Data Vencimento:</dt>
+                                <dd class="col-sm-8">{{ object.data_vencimento }}</dd>
+                                <dt class="col-sm-4"> Parcelas:</dt>
+                                <dd class="col-sm-8">{{ object.qtParcelas }}</dd>
+                                <dt class="col-sm-4">status:</dt>
+                                <dd class="col-sm-8">{{ object.status }}</dd>
+                                <dt class="col-sm-4">Data Venda:</dt>
+                                <dd class="col-sm-8">{{ object.created_at }}</dd>
+                            </dl>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+
+                    <!-- /.card -->
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Parcelas</h3>
+
+                            <div class="card-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="table_search" class="form-control float-right" placeholder="Desativado">
+
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0" style="height: 300px;">
+                            <table class="table table-head-fixed text-nowrap">
+                                <thead>
+                                <tr>
+                                    <th>Cescricao</th>
+                                    <th>Venda</th>
+                                    <th>Cliente</th>
+                                    <th>Pago</th>
+                                    <th>Data</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for parcela in parcelas %}
+                                <tr>
+                                    <td>{{ parcela.descricao }}</td>
+                                    <td>{{ parcela.data_pagamento }}</td>
+                                    <td>{{ parcela.valorParcela }}</td>
+                                    <td><span class="tag tag-success">{{ parcela.pago }}</span></td>
+                                    <td>Editar</td>
+                                </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

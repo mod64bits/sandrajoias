@@ -1,0 +1,12 @@
+.idea
+*.sqlite3
+venv
+*.pyc
+media
+*.bak
+*.dat
+*.pid
+*.dir
+*.db
+*.sqlite
+

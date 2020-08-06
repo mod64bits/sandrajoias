@@ -1,0 +1,178 @@
+{% extends 'core/starter.html' %}
+{% load static %}
+
+{% block title %}{{ cliente.slug }}{% endblock title %}
+
+{% block pageName %}{{ cliente.slug }}{% endblock pageName %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'core/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/plugins/toastr/toastr.min.css' %}">
+{% endblock css %}
+
+
+{% block content %}
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+
+                    <!-- Profile Image -->
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <img class="profile-user-img img-fluid img-circle"
+                                     src="{% static 'core/dist/img/user4-128x128.jpg' %}"
+                                     alt="User profile picture">
+                            </div>
+
+                            <h3 class="profile-username text-center">{{ clienteDetalhe.nome }}</h3>
+                            <strong><i class="fas fa-phone"></i> Fone</strong>
+                            <p class="text-muted">
+                                {{ clienteDetalhe.telefone }}
+                            </p>
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                    <strong><i class="fas fa-address-card"></i> CPF</strong>
+                                    <p class="text-muted">
+                                        {{ clienteDetalhe.CPF }}
+                                    </p>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong><i class="fas fa-map-marker-alt mr-1"></i> Endereço</strong>
+                                    <p class="text-muted">
+                                    <p>{{ clienteDetalhe.endereco }}</p>
+                                    </p>
+                                </li>
+                            </ul>
+                            <a href="{% url 'cliente:editar-cliente' clienteDetalhe.slug %}" class="btn btn-danger btn-block"><b>Editar</b></a>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header p-2">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Compras</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Parcelas Abertas</a></li>
+                            </ul>
+                        </div><!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="active tab-pane" id="activity">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Compras</h3>
+
+                                                    <div class="card-tools">
+                                                        <div class="input-group input-group-sm" style="width: 150px;">
+                                                            <input type="text" name="table_search" class="form-control float-right" placeholder="Procurar">
+
+                                                            <div class="input-group-append">
+                                                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /.card-header -->
+                                                <div class="card-body table-responsive p-0" style="height: 300px;">
+                                                   <table class="table table-head-fixed text-nowrap">
+                                            <thead>
+                                            <tr>
+                                                <th>Descricao</th>
+                                                <th>Data da Compra</th>
+                                                <th>Qt. Parcelas</th>
+                                                <th>Descrição</th>
+                                                <th>Valor Total</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            {% for compra in compras %}
+                                                <tr>
+                                                    <td>{{ compra.descricao_venda }}</td>
+                                                    <td>{{ compra.data_compra }}</td>
+                                                    <td>{{ compra.qtParcelas }}</td>
+                                                    <td>{{ compra.descricao_venda }}</td>
+                                                    <td><span class="tag tag-success">{{ compra.valor_total }}</span></td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="timeline">
+                                    <div class="card-body table-responsive p-0" style="height: 300px;">
+                                        <table class="table table-head-fixed text-nowrap">
+                                            <thead>
+                                            <tr>
+                                                <th>Descricao</th>
+                                                <th>Venda</th>
+                                                <th>Qt. Parcelas</th>
+                                                <th>Descrição</th>
+                                                <th>Valor Total</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            {% for parcela in parcelas %}
+                                                {% if parcela.pago == False %}
+                                                <tr>
+                                                    <td>{{ parcela.descricao }}</td>
+                                                    <td>{{ parcela.venda }}</td>
+                                                    <td>{{ parcela.valorParcela }}</td>
+                                                    <td>{{ parcela.data.date }}</td>
+                                                    <td><span class="tag tag-success">{{ compra.valor_total }}</span></td>
+                                                </tr>
+                                                {% endif %}
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </section>
+{% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'core/plugins/sweetalert2/sweetalert2.min.js' %}"></script>
+
+    <script src="{% static 'core/plugins/toastr/toastr.min.js' %}"></script>
+    <script type="text/javascript">
+        $(function() {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            {% if messages %}
+
+                $(function() {
+                    Toast.fire({
+                        icon: 'success',
+                        {% for message in messages %}
+                            title: '{{ message }}',
+                        {% endfor %}
+                    })
+                });
+            {% endif %}
+
+        });
+
+    </script>
+{% endblock scripts %}
+

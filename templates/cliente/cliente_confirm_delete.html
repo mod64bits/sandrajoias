@@ -1,0 +1,36 @@
+{% extends 'core/starter.html' %}
+
+{% block pageName %}Excluir{% endblock pageName %}
+{% block content %}
+     <div class="row">
+
+          <div class="col-md-12">
+            <div class="card card-default">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-bullhorn"></i>
+                  Excluir:  {{ object.slug }}
+                </h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="callout callout-danger">
+                  <h5>Atenção</h5>
+
+                  <form method="post">{% csrf_token %}
+                      <p class="text-danger">Tem Certeza que deseja Excluir permanentemente  <span class="mt-4 mb-2 "><h1>"{{ object.nome }}"?</h1></span></p>
+    <input type="submit" value="Confirm" class="btn btn-danger">
+</form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endblock content %}
+
+
+
+
+
+
+

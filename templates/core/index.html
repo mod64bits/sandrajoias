@@ -1,0 +1,200 @@
+{% extends 'core/starter.html' %}
+{% load static %}
+
+
+{% block title %}Painel de Controle{% endblock title %}
+{% block pageName %}Painel de Controle{% endblock pageName %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'core/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/plugins/toastr/toastr.min.css' %}">
+{% endblock css %}
+
+
+{% block content %}
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+       <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>{{ total_de_vendas }}</h3>
+
+                <p>Total de Vendas</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+           <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>{{ vendas_quitadas }}</h3>
+
+                <p>Vendas Quitadas</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{{ vendas_abertas }}</h3>
+
+                <p>Vendas Abertas</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+           <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>{{ valor_total_todas_vendas }}<sup style="font-size: 20px"></sup></h3>
+
+                <p>Valor Bruto Vendas</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="col-md-2">
+                                <a href="{% url 'core:nova-venda'%}" type="button" class="btn btn-info float-right">
+                                    <i class="fas fa-plus "></i>
+                                    Nova Venda
+                                </a>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Cliente</th>
+                                    <th>Descrição</th>
+                                    <th>Qt.Parcelas</th>
+                                    <th>Valor</th>
+                                    <th>Data Venda</th>
+                                    <th>status</th>
+                                    <th>Excluir</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for venda in todas_vendas %}
+                                    <tr>
+                                        <td><a href="{% url  'cliente:detalhe-cliente' venda.comprador.slug%}">{{ venda.comprador.nome }}</a></td>
+                                        <td><a href="{% url  'core:detalhe-venda' venda.slug%}">{{ venda.descricao_venda }}</a></td>
+                                        <td>{{ venda.qtParcelas }}</td>
+                                        <td>{{ venda.valor_total }}</td>
+                                        <td>{{ venda.data_compra }}</td>
+                                        {% if venda.status == 'andamento' %}
+                                            <td><span class="badge bg-primary">{{ venda.status }}</span></td>
+                                        {% else %}
+                                            <td><span class="badge bg-success">{{ venda.status }}</span></td>
+                                        {% endif %}
+                                        <td><a href="#"><i class="btn btn-block btn-danger fas fa-trash-alt"></i></a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Descrição</th>
+                                    <th>Cliente</th>
+                                    <th>Data Compra</th>
+                                    <th>Vencimento</th>
+                                    <th>Parcelas</th>
+                                    <th>status</th>
+                                    <th>Excluir</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+{% endblock content %}
+{% block scripts %}
+    <script src="{% static 'core/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'core/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'core/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'core/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'core/plugins/sweetalert2/sweetalert2.min.js' %}"></script>
+    <script src="{% static 'core/plugins/toastr/toastr.min.js' %}"></script>
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+            });
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            {% if messages %}
+
+                $(function() {
+                    Toast.fire({
+                        icon: 'success',
+                        {% for message in messages %}
+                            title: '{{ message }}',
+                        {% endfor %}
+                    })
+                });
+            {% endif %}
+
+        });
+
+    </script>
+
+
+{% endblock scripts %}
+
