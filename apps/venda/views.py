@@ -51,8 +51,9 @@ class NovaVendaView(SuccessMessageMixin, CreateView):
     success_message = "Nova Venda Realizada com Sucesso!!"
 
 
-class PagarParcela(UpdateView):
-    pass
+class PagarParcelaView(UpdateView):
+    model = Parcelas
+    fields = ['data_pagamento', 'pago']
 
 
 class VendaDetalheView(DetailView):

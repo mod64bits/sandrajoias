@@ -66,21 +66,21 @@
                             <table class="table table-head-fixed text-nowrap">
                                 <thead>
                                 <tr>
-                                    <th>Cescricao</th>
-                                    <th>Venda</th>
-                                    <th>Cliente</th>
+                                    <th>Descricao</th>
+                                    <th>Vencimento</th>
+                                    <th>Pagamento</th>
                                     <th>Pago</th>
-                                    <th>Data</th>
+                                    <th>Valor</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 {% for parcela in parcelas %}
                                 <tr>
                                     <td>{{ parcela.descricao }}</td>
+                                    <td>{{ parcela.data_vencimento }}</td>
                                     <td>{{ parcela.data_pagamento }}</td>
-                                    <td>{{ parcela.valorParcela }}</td>
                                     <td><span class="tag tag-success">{{ parcela.pago }}</span></td>
-                                    <td>Editar</td>
+                                    <td>{{ parcela.valorParcela }}</td>
                                 </tr>
                                 {% endfor %}
 
