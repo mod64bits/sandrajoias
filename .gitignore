@@ -9,4 +9,6 @@ media
 *.dir
 *.db
 *.sqlite
+apps/core/__pycache__/urls.cpython-37.pyc
+apps/venda/__pycache__/views.cpython-37.pyc
 
