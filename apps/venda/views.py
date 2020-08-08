@@ -53,6 +53,7 @@ class NovaVendaView(SuccessMessageMixin, CreateView):
 
 class PagarParcelaView(UpdateView):
     model = Parcelas
+    template_name = 'venda/PagarParcela.html'
     fields = ['data_pagamento', 'pago']
 
 
@@ -70,7 +71,7 @@ class VendaDetalheView(DetailView):
 
 class VencimentosView(ListView):
     model = Parcelas
-    template_name = ''
+    template_name = 'venda/PagarParcela.html'
 
     def get_queryset(self):
         VencimentoHoje = date.today()

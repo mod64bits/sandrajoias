@@ -1,1 +1,49 @@
 {% extends 'core/starter.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <section class="content">
+        <div class="container-fluid">
+            <!-- COLOR PALETTE -->
+            <div class="card card-default color-palette-box">
+                <div class="card-header">
+                    <div class="col-md-12">
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="fas fa-bullhorn"></i>
+                                    Pagar Parcela {{ object.descricao }} com vencimendo {{ object.data_vencimento }}
+                                </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="callout callout-success">
+                                    <form role="form" method="post">
+                                        <div class="row">
+                                            {% csrf_token %}
+                                            <div class="col-sm-6">
+                                                <!-- text input -->
+                                                <div class="form-group">
+                                                    {{ form.data_pagamento|as_crispy_field }}
+                                                </div>
+                                            </div>
+                                             <div class="col-sm-6">
+                                                <!-- text input -->
+                                                <div class="form-group">
+                                                    {{ form.pago|as_crispy_field }}
+                                                </div>
+                                            </div>
+                                             <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">Pagar</button>
+                                    </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

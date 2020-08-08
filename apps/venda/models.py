@@ -52,5 +52,8 @@ class Parcelas(models.Model):
     data_pagamento = models.DateField('Data de Pagamento', null=True, blank=True)
     data = models.DateTimeField('Criado em', auto_now_add=True)
 
+    def get_absolute_url(self):
+        return reverse('core:detalhe-venda', kwargs={'slug': self.venda.slug})
+
     def __str__(self):
         return self.descricao

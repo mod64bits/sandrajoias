@@ -76,10 +76,11 @@
                                 <tbody>
                                 {% for parcela in parcelas %}
                                 <tr>
-                                    <td>{{ parcela.descricao }}</td>
+                                    <td><a href="{% url 'core:pagar-parcela' parcela.id%}"> {{ parcela.descricao }}</a></td>
                                     <td>{{ parcela.data_vencimento }}</td>
                                     <td>{{ parcela.data_pagamento }}</td>
                                     <td><span class="tag tag-success">{{ parcela.pago }}</span></td>
+
                                     <td>{{ parcela.valorParcela }}</td>
                                 </tr>
                                 {% endfor %}
