@@ -19,31 +19,32 @@
        <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box bg-warning">
               <div class="inner">
                 <h3>{{ totalClientes }}</h3>
 
                 <p>Total de Clientes</p>
               </div>
               <div class="icon">
-                <i class="ion ion-bag"></i>
+                <i class="fas fa-users    "></i>
+               
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer">Mais info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
            <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-warning">
+            <div class="small-box bg-success">
               <div class="inner">
                 <h3>{{ ativos }}</h3>
 
                 <p>Clientes Ativos</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="fas fa-thumbs-up    "></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer">Mais info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -58,23 +59,23 @@
                 <p>Clientes inativos</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="fa fa-thumbs-down" aria-hidden="true"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer">Mais info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
            <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-success">
+            <div class="small-box bg-primary">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>0<sup style="font-size: 20px"></sup></h3>
 
-                <p>Bounce Rate</p>
+                <p>Aniversariantes</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="fa fa-birthday-cake" aria-hidden="true"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer">Mais info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -84,7 +85,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="col-md-2">
-                                <a href="{% url 'cliente:novo-cliente'%}" type="button" class="btn btn-info float-right">
+                                <a href="{% url 'cliente:novo-cliente'%}" type="button" class="btn btn-dark float-right">
                                     <i class="fas fa-plus "></i>
                                     Novo Cliente
                                 </a>
@@ -120,19 +121,7 @@
                                         <td><a href="{% url 'cliente:excluir-cliente' cliente.slug %}"><i class="btn btn-block btn-danger fas fa-trash-alt"></i></a></td>
                                     </tr>
                                 {% endfor %}
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>CPF</th>
-                                    <th>Telefone</th>
-                                    <th>CPF</th>
-                                    <th>Data Nascimento</th>
-                                    <th>status</th>
-                                    <th>Excluir</th>
-                                </tr>
-                                </tfoot>
-                            </table>
+                                
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -196,4 +185,3 @@
 
 
 {% endblock scripts %}
-
