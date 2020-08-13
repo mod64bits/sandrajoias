@@ -1,10 +1,10 @@
 {% load static %}
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-        <img src="{% static 'core/dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+    <a href="/" class="brand-link">
+        <img src="{% static 'core/dist/img/logoAlia.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
-        <span class="brand-text font-weight-light">mod64bits</span>
+        <span class="brand-text font-weight-light">Sandra Jóias System </span>
     </a>
 
     <!-- Sidebar -->
@@ -12,7 +12,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{% static 'core/dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+                <img src="{% static 'core/dist/img/iconfinder_user_male2_172626.png' %}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block">{% if user.first_name %}{{ user.first_name }}{% else %}{{ user }}{% endif %}</a>
@@ -26,9 +26,9 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-item has-treeview menu-open">
+                    <li class="nav-item has-treeview menu-close">
                         <a href="#" class="nav-link active">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="nav-icon fas fa-user-friends"></i>
                             <p>
                                 Clientes
                                 <i class="right fas fa-angle-left"></i>
@@ -37,30 +37,106 @@
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{% url 'cliente:novo-cliente' %}" class="nav-link {% if url_name == 'servicos' %}active{% endif %}">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="nav-icon fas fa-user-plus"></i>
                                     <p>Novo</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link {% if url_name == 'lista-categoria_servicos' %}active{% endif %}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Produtos</p>
+                                <a href=" {% url 'cliente:lista-cliente' %} " class="nav-link {% if url_name == 'lista-categoria_servicos' %}active{% endif %}">
+                                    <i class="fas fa-search-plus   "></i>
+                                    <p>Ver todos</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Simple Link
-                                <span class="right badge badge-danger">New</span>
-                            </p>
-                        </a>
-                    </li>
+                    
                 </ul>
             </nav>
         {% endwith %}
+
+
+
+
+        {% with url_name=request.resolver_match.url_name %}
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                     with font-awesome or any other icon font library -->
+                <li class="nav-item has-treeview menu-close">
+                    <a href="#" class="nav-link active">
+                       <i class="fas fa-handshake    "></i>
+                        <p>
+                            Vendas
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{% url 'core:nova-venda'%}" class="nav-link {% if url_name == 'servicos' %}active{% endif %}">
+                                <i class="nav-icon fas fa-plus"></i>
+                                <p>Nova Venda</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link {% if url_name == 'lista-categoria_servicos' %}active{% endif %}">
+                                <i class="fas fa-search   "></i>
+                                <p>Vendas em Atraso</p>
+                            </a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a href="#" class="nav-link {% if url_name == 'lista-categoria_servicos' %}active{% endif %}">
+                                <i class="fas fa-print "></i>
+                                <p>Relatórios de Vendas</p>
+                            </a>
+                        </li>
+                </li>
+               
+            </ul>
+        </nav>
+    {% endwith %}
+
+
+
+
+    {% with url_name=request.resolver_match.url_name %}
+    <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+                 with font-awesome or any other icon font library -->
+            <li class="nav-item has-treeview menu-close">
+                <a href="#" class="nav-link active">
+                    <i class="fa fa-birthday-cake" aria-hidden="true"></i>
+                    <p>
+                        Aniversariantes
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link {% if url_name == 'servicos' %}active{% endif %}">
+                            <i class="nav-icon fas fa-plus"></i>
+                            <p>Aniversariantes do Dia</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link {% if url_name == 'lista-categoria_servicos' %}active{% endif %}">
+                           <i class="fa fa-gamepad" aria-hidden="true"></i>
+                            <p>Realizar Sorteio</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+           
+        </ul>
+    </nav>
+{% endwith %}
+
+
+
+
+
+
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
