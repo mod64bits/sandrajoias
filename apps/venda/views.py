@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from datetime import date
 from django.utils import timezone
@@ -10,7 +11,7 @@ from .forms import VendaForm
 from .models import Venda, Parcelas
 
 
-class NovaVendaView(SuccessMessageMixin, CreateView):
+class NovaVendaView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = VendaForm
     template_name = 'venda/NovaVenda.html'
 
@@ -51,13 +52,13 @@ class NovaVendaView(SuccessMessageMixin, CreateView):
     success_message = "Nova Venda Realizada com Sucesso!!"
 
 
-class PagarParcelaView(UpdateView):
+class PagarParcelaView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Parcelas
     template_name = 'venda/PagarParcela.html'
     fields = ['data_pagamento', 'pago']
 
 
-class VendaDetalheView(DetailView):
+class VendaDetalheView(LoginRequiredMixin, SuccessMessageMixin, DetailView):
     model = Venda
     template_name = 'venda/VendaDetalhe.html'
 
@@ -69,7 +70,7 @@ class VendaDetalheView(DetailView):
         return context
 
 
-class VencimentosView(ListView):
+class VencimentosView(LoginRequiredMixin, SuccessMessageMixin, ListView):
     model = Parcelas
     template_name = 'venda/PagarParcela.html'
 

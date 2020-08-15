@@ -17,68 +17,68 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-       <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>{{ total_de_vendas }}</h3>
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>{{ total_de_vendas }}</h3>
 
-                <p>Total de Vendas</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <p>Total de Vendas</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>{{ vendas_quitadas }}</h3>
+
+                            <p>Vendas Quitadas</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-check-circle" aria-hidden="true"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">Mais info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>{{ vendas_abertas }}</h3>
+
+                            <p>Vendas Abertas</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>{{ valor_total_todas_vendas }}<sup style="font-size: 20px"></sup></h3>
+
+                            <p>Valor Bruto Vendas</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
             </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>{{ vendas_quitadas }}</h3>
-
-                <p>Vendas Quitadas</p>
-              </div>
-              <div class="icon">
-                <i class="fa fa-check-circle" aria-hidden="true"></i>
-              </div>
-              <a href="#" class="small-box-footer">Mais info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>{{ vendas_abertas }}</h3>
-
-                <p>Vendas Abertas</p>
-              </div>
-              <div class="icon">
-                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-           <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>{{ valor_total_todas_vendas }}<sup style="font-size: 20px"></sup></h3>
-
-                <p>Valor Bruto Vendas</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-        </div>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -121,7 +121,7 @@
                                     </tr>
                                 {% endfor %}
                                 </tbody>
-                               
+
                             </table>
                         </div>
                         <!-- /.card-body -->
@@ -132,7 +132,89 @@
             </div>
             <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
+        <div class="row">
+            <!-- Left col -->
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Aniversariantes</h3>
+
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control float-right" placeholder="Procurar">
+
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0" style="height: 300px;">
+                        <table class="table table-head-fixed text-nowrap">
+                            <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Data Nascimento</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for aniv in aniversarios %}
+                                <tr>
+                                    <td>{{ aniv.nome }}</td>
+                                    <td><span class="tag tag-success">{{ aniv.data_nascimento }}</span></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!-- Info Boxes Style 2 -->
+                <div class="info-box mb-3 bg-warning">
+                    <span class="info-box-icon"><i class="fas fa-tag"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Total a Receber</span>
+                        <span class="info-box-number">0,00</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+                <div class="info-box mb-3 bg-success">
+                    <span class="info-box-icon"><i class="far fa-heart"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Total Recebido</span>
+                        <span class="info-box-number">0,00</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+                <div class="info-box mb-3 bg-danger">
+                    <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Total Não Recebidos</span>
+                        <span class="info-box-number">0,00</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+                <div class="info-box mb-3 bg-info">
+                    <span class="info-box-icon"><i class="far fa-comment"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Media</span>
+                        <span class="info-box-number">0,00</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
     </section>
     <!-- /.content -->
 {% endblock content %}
