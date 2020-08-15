@@ -68,7 +68,7 @@
             <!-- small box -->
             <div class="small-box bg-primary">
               <div class="inner">
-                <h3>0<sup style="font-size: 20px"></sup></h3>
+                <h3>{{ aniversariantesDoDia }}<sup style="font-size: 20px"></sup></h3>
 
                 <p>Aniversariantes</p>
               </div>
@@ -121,6 +121,8 @@
                                         <td><a href="{% url 'cliente:excluir-cliente' cliente.slug %}"><i class="btn btn-block btn-danger fas fa-trash-alt"></i></a></td>
                                     </tr>
                                 {% endfor %}
+                                </tbody>
+                            </table>
                                 
                         </div>
                         <!-- /.card-body -->
